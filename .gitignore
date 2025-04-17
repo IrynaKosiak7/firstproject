@@ -43,3 +43,25 @@ nb-configuration.xml
 /.quarkus/cli/plugins/
 # TLS Certificates
 .certs/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+/src/main/resources/static/node_modules
+npm-*.log
+generated/
+
+.dockerignore
+node_modules
+npm-debug.log
+.git
+.gitignore
