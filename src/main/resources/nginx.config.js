@@ -8,7 +8,7 @@ server{
         try_files $uri/index.html;
     }
     location /api/ {
-        proxy_pass http://localhost:8080/api/;
+        proxy_pass http://localhost:8081/api/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';

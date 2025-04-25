@@ -12,7 +12,7 @@ spec:
           service:
             name: front-ingress-quarkus
             port:
-              number: 80
+              number: 81
         path: /
         pathType: Exact
 status:

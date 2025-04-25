@@ -27,6 +27,6 @@ services:
     command:
       - "npm run dev"
     ports:
-      - "80:80"
+      - "81:81"
     networks:
       react_network:

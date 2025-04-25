@@ -5,7 +5,7 @@ services:
     container_name: react-app
     restart: always
     ports:
-      - "80:80"
+      - "81:81"
     networks:
       react_network:
     depends_on: backend

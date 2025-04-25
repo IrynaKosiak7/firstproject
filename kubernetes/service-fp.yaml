@@ -7,10 +7,10 @@ metadata:
   name: firstprojekt
 spec:
   ports:
-  - name: 80-8080
-    port: 80
+  - name: 81-8081
+    port: 81
     protocol: TCP
-    targetPort: 8080
+    targetPort: 8081
   selector:
     app: firstprojekt
   type: ClusterIP
