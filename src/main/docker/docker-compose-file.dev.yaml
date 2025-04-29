@@ -11,8 +11,8 @@ services:
     ports:
       - "3000:3000"
     environment:
-      NODE_ENV=development
-      CHOKIDAR_USEPOLLING=true
+      NODE_ENV: development
+      CHOKIDAR_USEPOLLING: true
     networks:
       react_network:
     depends_on: backend

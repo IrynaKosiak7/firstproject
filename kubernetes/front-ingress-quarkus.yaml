@@ -10,10 +10,10 @@ spec:
       paths:
       - backend:
           service:
-            name: front-ingress-quarkus
+            name: front-service-quarkus
             port:
-              number: 81
+              number: 3000
         path: /
-        pathType: Exact
+        pathType: Prefix
 status:
   loadBalancer: {}

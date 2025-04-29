@@ -12,7 +12,7 @@ spec:
     protocol: TCP
     targetPort: 3000
   selector:
-    app: front-service-quarkus
+    app: front-quarkus
   type: ClusterIP
 status:
   loadBalancer: {}

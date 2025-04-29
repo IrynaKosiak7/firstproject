@@ -10,8 +10,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const oidcConfig = {
   authority: "http://localhost:8080/realms/quarkus",
   client_id: "quarkus-react-rest-api",
-  redirect_uri: "http://localhost:3000",
-  post_logout_redirect_uri: "http://localhost:3000",
+  redirect_uri: "http://localhost:9090",
+  post_logout_redirect_uri: "http://localhost:9090",
 };
 root.render(
   <React.StrictMode>

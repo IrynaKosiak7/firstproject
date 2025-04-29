@@ -3,22 +3,22 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: front-depl-quarkus
-  name: front-depl-quarkus
+    app: front-quarkus
+  name: front-quarkus
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: front-depl-quarkus
+      app: front-quarkus
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: front-depl-quarkus
+        app: front-quarkus
     spec:
       containers:
-      - image: front:0.0.1-SNAPSHOT
+      - image: quarkus-react:1.0.2
         name: front
         resources: {}
 status: {}

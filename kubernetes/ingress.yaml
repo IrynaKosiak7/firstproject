@@ -13,7 +13,7 @@ spec:
             name: firstprojekt
             port:
               number: 81
-        path: /
-        pathType: Exact
+        path: /api/
+        pathType: Prefix
 status:
   loadBalancer: {}
