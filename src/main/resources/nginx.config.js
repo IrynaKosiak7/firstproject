@@ -1,5 +1,5 @@
 server{
-    listen 80;
+    listen 90;
     server_name example.com
     root /usr/share/nginx/html;
     index index.html;
@@ -8,7 +8,7 @@ server{
         try_files $uri/index.html;
     }
     location /api/ {
-        proxy_pass http://localhost:8081/api/;
+        proxy_pass http://localhost:9090/api/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';

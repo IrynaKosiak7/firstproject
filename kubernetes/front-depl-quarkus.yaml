@@ -18,7 +18,7 @@ spec:
         app: front-quarkus
     spec:
       containers:
-      - image: quarkus-react:1.0.2
+      - image: quarkus-react:1.0.3
         name: front
         resources: {}
 status: {}

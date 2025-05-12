@@ -8,10 +8,10 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const oidcConfig = {
-  authority: "http://localhost:8080/realms/quarkus",
-  client_id: "quarkus-react-rest-api",
-  redirect_uri: "http://localhost:9090",
-  post_logout_redirect_uri: "http://localhost:9090",
+  authority: "${process.env.AUTH_URL}",
+  client_id: '${process.env.CLIENT_ID}',
+  redirect_uri: "${process.env.REDIRECT_URI}",
+  post_logout_redirect_uri: "${process.env.POST_LOGOUT}",
 };
 root.render(
   <React.StrictMode>

@@ -18,7 +18,7 @@ spec:
         app: firstprojekt
     spec:
       containers:
-      - image: iryna-kosiakovska/firstprojekt:1.0.2-SNAPSHOT
+      - image: iryna-kosiakovska/firstprojekt:1.0.3-SNAPSHOT
         name: back
         resources: {}
 status: {}
