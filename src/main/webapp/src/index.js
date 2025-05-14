@@ -1,4 +1,4 @@
- import React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
@@ -6,12 +6,11 @@ import { AuthProvider } from "react-oidc-context";
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
 const oidcConfig = {
-  authority: "${process.env.AUTH_URL}",
-  client_id: '${process.env.CLIENT_ID}',
-  redirect_uri: "${process.env.REDIRECT_URI}",
-  post_logout_redirect_uri: "${process.env.POST_LOGOUT}",
+  authority: process.env.REACT_APP_AUTH_URL || "",
+  client_id: process.env.REACT_APP_CLIENT_ID || "",
+  redirect_uri: process.env.REACT_APP_REDIRECT_URI || "",
+  post_logout_redirect_uri: process.env.REACT_APP_POST_LOGOUT || "",
 };
 root.render(
   <React.StrictMode>

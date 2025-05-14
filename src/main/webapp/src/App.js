@@ -12,7 +12,7 @@ const [data3, setData3] = useState(null);
         (async () => {
             try {
                 const token = auth.user?.access_token;
-                const response = await fetch("http://localhost:9090/api/hello", {
+                const response = await fetch("http://localhost:9091/api/hello", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -27,7 +27,7 @@ const [data3, setData3] = useState(null);
         (async () => {
             try {
                 const token = auth.user?.access_token;
-                const response = await fetch("http://localhost:9090/api/edit/help", {
+                const response = await fetch("http://localhost:9091/api/edit/help", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -42,7 +42,7 @@ const [data3, setData3] = useState(null);
         (async () => {
             try {
                 const token = auth.user?.access_token;
-                const response = await fetch("http://localhost:9090/api/user/bye", {
+                const response = await fetch("http://localhost:9091/api/user/bye", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
