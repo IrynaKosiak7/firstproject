@@ -1,0 +1,31 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: firstproject
+  namespace: pitc-quarkusproject-dev
+  labels:
+    app: firstproject
+    app.kubernetes.io/component: firstproject
+    app.kubernetes.io/instance: firstproject
+    app.kubernetes.io/name: firstproject
+    app.kubernetes.io/part-of: pitc-imageforquarkusfirst-dev
+  annotations:
+    openshift.io/host.generated: 'true'
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      fieldsType: FieldsV1
+    - manager: openshift-router
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      fieldsType: FieldsV1
+      subresource: status
+spec:
+  to:
+    kind: Service
+    name: firstproject
+    weight: 100
+  port:
+    targetPort: 8081-tcp
+status:

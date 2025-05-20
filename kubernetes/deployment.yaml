@@ -1,24 +1,85 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: '*'
+    app.openshift.io/route-disabled: 'false'
+    deployment.kubernetes.io/revision: '2'
+  name: back
+  generation: 2
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: apps/v1
+      fieldsType: FieldsV1
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: apps/v1
+      fieldsType: FieldsV1
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: apps/v1
+      fieldsType: FieldsV1
+      subresource: status
+  namespace: pitc-quarkusproject-dev
   labels:
-    app: firstprojekt
-  name: firstprojekt
+    app: firstproject
+    app.kubernetes.io/component: firstproject
+    app.kubernetes.io/instance: firstproject
+    app.kubernetes.io/name: firstproject
+    app.kubernetes.io/part-of: pitc-imageforquarkusfirst-dev
+    app.openshift.io/runtime-namespace: pitc-quarkusproject-dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: firstprojekt
-  strategy: {}
+      app: firstproject
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: firstprojekt
+        app: firstproject
+        deployment: firstproject-back
     spec:
       containers:
-      - image: iryna-kosiakovska/firstprojekt:1.0.3-SNAPSHOT
-        name: back
-        resources: {}
-status: {}
+        - name: back
+          image: 'harbor.puzzle.ch/playground/ikosiakovska@sha256:01cb62b46dad6de4ca9eca4a85cae9b2de7ad2de4dbce8de74811de76379b19d'
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 8081
+              protocol: TCP
+            - containerPort: 8443
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+status:
+  observedGeneration: 2
+  replicas: 1
+  updatedReplicas: 1
+  readyReplicas: 1
+  availableReplicas: 1
+  conditions:
+    - type: Available
+      status: 'True'
+      reason: MinimumReplicasAvailable
+      message: Deployment has minimum availability.
+    - type: Progressing
+      status: 'True'
+      reason: NewReplicaSetAvailable
+      message: ReplicaSet has successfully progressed.
+

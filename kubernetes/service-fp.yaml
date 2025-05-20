@@ -1,18 +1,41 @@
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: null
+  name: firstproject
+  namespace: pitc-quarkusproject-dev
   labels:
-    app: firstprojekt
-  name: firstprojekt
+    app: firstproject
+    app.kubernetes.io/component: firstproject
+    app.kubernetes.io/instance: firstproject
+    app.kubernetes.io/name: firstproject
+    app.kubernetes.io/part-of: pitc-imageforquarkusfirst-dev
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: v1
+      fieldsType: FieldsV1
 spec:
+  ipFamilies:
+    - IPv4
   ports:
-  - name: 81-8081
-    port: 81
-    protocol: TCP
-    targetPort: 8081
-  selector:
-    app: firstprojekt
+    - name: 8080-tcp
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+    - name: 8081-tcp
+      protocol: TCP
+      port: 8081
+      targetPort: 8081
+    - name: 8443-tcp
+      protocol: TCP
+      port: 8443
+      targetPort: 8443
+  internalTrafficPolicy: Cluster
   type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    app: firstproject
+    deployment: firstproject
 status:
   loadBalancer: {}
