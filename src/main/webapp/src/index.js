@@ -11,6 +11,7 @@ const oidcConfig = {
   client_id: process.env.REACT_APP_CLIENT_ID || "",
   redirect_uri: process.env.REACT_APP_REDIRECT_URI || "",
   post_logout_redirect_uri: process.env.REACT_APP_POST_LOGOUT || "",
+  port_back: process.env.REACT_APP_BACKEND || "",
 };
 root.render(
   <React.StrictMode>

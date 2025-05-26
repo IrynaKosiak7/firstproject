@@ -1,5 +1,5 @@
 import './App.css';
-import {useEffect, useState} from 'react';
+import { useState} from 'react';
 import { useAuth } from "react-oidc-context";
 
 function App() {
@@ -7,52 +7,7 @@ const auth = useAuth();
 const [data1, setData1] = useState(null);
 const [data2, setData2] = useState(null);
 const [data3, setData3] = useState(null);
-
-  useEffect(() => {
-        (async () => {
-            try {
-                const token = auth.user?.access_token;
-                const response = await fetch("http://localhost:9091/api/hello", {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                setData1(await response.json());
-            } catch (e) {
-                console.error(e);
-            }
-        })();
-    }, [auth]);
-     useEffect(() => {
-        (async () => {
-            try {
-                const token = auth.user?.access_token;
-                const response = await fetch("http://localhost:9091/api/edit/help", {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                setData2(await response.json());
-            } catch (e) {
-                console.error(e);
-            }
-        })();
-    }, [auth]);
-     useEffect(() => {
-        (async () => {
-            try {
-                const token = auth.user?.access_token;
-                const response = await fetch("http://localhost:9091/api/user/bye", {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                setData3(await response.json());
-            } catch (e) {
-                console.error(e);
-            }
-        })();
-    }, [auth]);
+const PORT_BACK = process.env.REACT_APP_BACKEND;
 
  switch (auth.activeNavigator) {
      case "signinSilent":
@@ -71,9 +26,75 @@ const [data3, setData3] = useState(null);
        return (
          <div className="App">
             <h1>API Response</h1>
-            <pre>{data1 ? JSON.stringify(data1, null, 2) : "Oops... caused " }</pre>
-            <pre>{data2 ? JSON.stringify(data2, null, 2) : "Oops...  caused" }</pre>
-            <pre>{data3 ? JSON.stringify(data3, null, 2) : "Oops...  caused" }</pre>
+                <div>
+                     <button
+                         type="button"
+                             className="btn btn-primary"
+                                 onClick={async () => {
+                                    try {
+                                     const token = auth.user?.access_token;
+                                     const response = await fetch(PORT_BACK + "/api/hello", {
+                                     method: "GET",
+                                     headers: {
+                                    "content-type": "application/json",
+                                    "Authorization": `Bearer ${token}`,
+                                     },
+                                    });
+                                    setData1(await response.json());
+                                   } catch (e) {
+                                    console.log(e);
+                                 }
+                               }}
+                                >
+                                 Say Hello!
+                     </button>
+                </div>
+                <div>
+                     <button
+                         type="button"
+                             className="btn btn-primary"
+                                 onClick={async () => {
+                                    try {
+                                     const token = auth.user?.access_token;
+                                     const response = await fetch(PORT_BACK + "/api/edit/help", {
+                                     method: "GET",
+                                     headers: {
+                                    "content-type": "application/json",
+                                    "Authorization": `Bearer ${token}`,
+                                     },
+                                    });
+                                    setData2(await response.json());
+                                   } catch (e) {
+                                    console.log(e);
+                                 }
+                               }}
+                                >
+                                 Help!
+                     </button>
+                </div>
+                <div>
+                     <button
+                         type="button"
+                             className="btn btn-primary"
+                                 onClick={async () => {
+                                    try {
+                                     const token = auth.user?.access_token;
+                                     const response = await fetch(PORT_BACK + "/api/user/bye", {
+                                     method: "GET",
+                                     headers: {
+                                    "content-type": "application/json",
+                                    "Authorization": `Bearer ${token}`,
+                                     },
+                                    });
+                                    setData3(await response.json());
+                                   } catch (e) {
+                                    console.log(e);
+                                 }
+                               }}
+                                >
+                                Say Bye!
+                     </button>
+                </div>
             <button onClick={() => void auth.signoutRedirect()}>Log out</button>
          </div>
          );
